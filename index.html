@@ -21,9 +21,16 @@
                 const isAppInstalled = false;
 
                 // const appScheme = `twitter://?clientId=${clientId}&sessionId=${sessionId}`;
-                const appScheme = `com.example.biometric_app://?clientId=${clientId}&sessionId=${sessionId}`;
+                
 
                 const userAgent = window.navigator.userAgent;
+                let appScheme = `com.example.biometric_app://?clientId=${clientId}&sessionId=${sessionId}`;
+                if (userAgent.includes('Android')){
+                    appScheme = `com.example.biometric_app://?clientId=${clientId}&sessionId=${sessionId}`;
+                }
+                else if(userAgent.includes('iPhone') || userAgent.includes('iPad')){
+                    appScheme = `twitter://`;
+                }
 
                 setTimeout(function () {
                     if (userAgent.includes('Android')) {
